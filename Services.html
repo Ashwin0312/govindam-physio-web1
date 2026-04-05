@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Services | Govindam Physiotherapy</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --indigo:       #3D5A8A;
+            --indigo-dark:  #1C2541; /* Dark Navy */
+            --indigo-mid:   #2A3659;
+            --mint:         #00A896;
+            --mint-light:   #E6F7F5;
+            --white:        #FFFFFF;
+            --off-white:    #F4F7FB;
+            --border:       #DDE4EF;
+            --text-main:    #3A4A5C;
+            --text-muted:   #7A8FA6;
+            --text-light:   #A8BDD0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--white); color: var(--text-main); font-family: 'Jost', sans-serif; line-height: 1.6; overflow-x: hidden; }
+
+        /* ---- NAVBAR ---- */
+        .navbar { display: flex; align-items: center; justify-content: space-between; padding: 0 5%; height: 72px; background: var(--white); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; }
+        .logo a { text-decoration: none; display: flex; flex-direction: column; }
+        .logo h1 { color: var(--indigo-mid); font-size: 22px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; line-height: 1.1; }
+        .logo span { font-size: 12px; font-weight: 400; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; margin-top: 1px; }
+        .nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 14px; font-weight: 500; letter-spacing: 0.5px; position: relative; padding-bottom: 4px; transition: color 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--indigo); }
+        .nav-links a.active::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: var(--mint); border-radius: 2px; }
+        .btn-nav { background: var(--mint); color: var(--white); text-decoration: none; padding: 11px 24px; border-radius: 6px; font-size: 13px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; transition: all 0.3s; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; border: none; }
+        .btn-nav:hover { background: var(--indigo); }
+
+        /* ---- HERO (Overlays removed) ---- */
+        .hero { 
+            background: url('service.jpeg') center/cover no-repeat;
+            min-height: 520px; 
+            display: flex; 
+            align-items: center; 
+            position: relative; 
+            overflow: hidden; 
+            padding: 80px 5%; 
+        }
+        .hero::before { 
+            content: ''; position: absolute; inset: 0; 
+            background-image: repeating-linear-gradient(-45deg, rgba(0, 168, 150, 0.08), rgba(0, 168, 150, 0.08) 1px, transparent 1px, transparent 30px);
+        }
+        .hero::after { content: ''; position: absolute; width: 500px; height: 500px; right: -100px; top: -100px; background: radial-gradient(circle, rgba(0,168,150,0.18) 0%, transparent 70%); border-radius: 50%; }
+        .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; position: relative; z-index: 2; }
+        
+        /* Added text shadows for readability */
+        .hero-eyebrow { display: inline-flex; align-items: center; gap: 10px; background: rgba(0,0,0,0.5); border: 1px solid rgba(0,168,150,0.6); color: var(--mint); padding: 7px 16px; border-radius: 4px; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 28px; }
+        .hero-eyebrow::before { content: ''; width: 6px; height: 6px; background: var(--mint); border-radius: 50%; }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 54px; color: var(--white); line-height: 1.15; font-weight: 400; margin-bottom: 22px; text-shadow: 0 4px 12px rgba(0,0,0,0.8); }
+        .hero h1 em { font-style: italic; color: var(--mint); }
+        .hero-sub { color: var(--white); font-size: 16px; font-weight: 400; max-width: 420px; line-height: 1.8; text-shadow: 0 2px 8px rgba(0,0,0,0.8); }
+        
+        .hero-cta { margin-top: 36px; display: flex; gap: 16px; align-items: center; }
+        .hero-cta button.primary { background: var(--mint); color: var(--white); text-decoration: none; padding: 14px 30px; border-radius: 6px; font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; transition: all 0.3s; border: none; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+        .hero-cta button.primary:hover { background: var(--white); color: var(--mint); }
+        .hero-cta a.ghost { color: var(--white); font-size: 14px; text-decoration: none; display: flex; align-items: center; gap: 8px; transition: color 0.3s; text-shadow: 0 2px 8px rgba(0,0,0,0.8); }
+        .hero-cta a.ghost:hover { color: var(--mint); }
+
+        /* Hero Stats Panel */
+        .hero-stats-panel { 
+            background: rgba(42, 54, 89, 0.85); /* Rich Indigo Blue instead of dark grey */
+            border: 1px solid rgba(0, 168, 150, 0.4); /* Subtle Mint colored border */
+            backdrop-filter: blur(10px); 
+            border-radius: 12px; 
+            padding: 40px; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 30px; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3); 
+        }
+        .hero-stat { display: flex; flex-direction: column; gap: 4px; }
+        .hero-stat + .hero-stat { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; }
+        .hs-num { font-family: 'Playfair Display', serif; font-size: 46px; color: var(--mint); font-weight: 600; line-height: 1; text-shadow: 0 2px 8px rgba(0,0,0,0.5); }
+        .hs-label { font-size: 13px; color: var(--white); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 500; }
+        .hs-bar { height: 2px; background: rgba(255,255,255,0.15); border-radius: 2px; margin-top: 10px; overflow: hidden; }
+        .hs-bar-fill { height: 100%; background: var(--mint); border-radius: 2px; box-shadow: 0 0 8px var(--mint); } /* Added a glow to the progress bar */
+
+        /* ---- TAGLINE BAR ---- */
+        .tagline-bar { background: var(--mint); padding: 18px 5%; text-align: center; display: flex; align-items: center; justify-content: center; gap: 20px; }
+        .tagline-bar p { color: var(--white); font-size: 14px; font-weight: 500; letter-spacing: 1px; }
+        .tl-dot { width: 5px; height: 5px; background: rgba(255,255,255,0.5); border-radius: 50%; }
+
+        /* ---- SHARED SECTION HELPERS ---- */
+        .sec-inner { max-width: 1240px; margin: 0 auto; padding: 0 5%; }
+        .sec-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 2.5px; color: var(--mint); display: block; margin-bottom: 12px; }
+        .sec-title { font-family: 'Playfair Display', serif; font-size: 42px; color: var(--indigo-mid); font-weight: 400; line-height: 1.2; }
+        .sec-title em { font-style: italic; color: var(--indigo); }
+        .sec-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px; border-bottom: 1px solid var(--border); padding-bottom: 30px; }
+        .sec-count { font-family: 'Playfair Display', serif; font-size: 80px; color: var(--off-white); font-weight: 600; line-height: 1; user-select: none; }
+
+        /* ---- SERVICES LIST ---- */
+        .services-section { padding: 100px 0; }
+        .svc-list { display: flex; flex-direction: column; gap: 20px; }
+        .svc-item { display: grid; grid-template-columns: 280px 1fr; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; transition: box-shadow 0.4s, border-color 0.4s; opacity: 0; transform: translateY(24px); animation: riseUp 0.55s forwards; background: var(--white); }
+        .svc-item:hover { box-shadow: 0 16px 48px rgba(28,37,65,0.1); border-color: var(--mint); }
+        .svc-item.flip { grid-template-columns: 1fr 280px; }
+        .svc-item.flip .svc-panel { order: 2; }
+        .svc-item.flip .svc-body { order: 1; border-left: none; border-right: 1px solid var(--border); }
+
+        .svc-panel { position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; padding: 36px 32px; min-height: 280px; }
+        
+        /* UPDATED: Service Panels with Background Images (Overlays removed) */
+        .sp-1 { background: url('physiotherapy1.jpg') center/cover no-repeat; }
+        .sp-2 { background: url('chiropractica.jpg') center/cover no-repeat; }
+        .sp-3 { background: url('cupping1.jpeg') center/cover no-repeat; }
+        .sp-4 { background: url('needle.jpg') center/cover no-repeat; }
+        .sp-5 { background: url('tapping.jpg') center/cover no-repeat; }
+        .sp-6 { background: url('ergonomics.jpg') center/cover no-repeat; }
+
+        .svc-panel::before { content: ''; position: absolute; bottom: -30px; right: -30px; width: 160px; height: 160px; border: 1px solid rgba(0,168,150,0.4); border-radius: 50%; z-index: 1;}
+        .svc-panel::after { content: ''; position: absolute; bottom: 10px; right: 10px; width: 80px; height: 80px; border: 1px solid rgba(0,168,150,0.3); border-radius: 50%; z-index: 1; }
+        
+        .svc-panel-inner { position: relative; z-index: 2; }
+        
+        /* Added text shadow for visibility against images */
+        .svc-num-tag { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: var(--white); text-transform: uppercase; margin-bottom: auto; text-shadow: 0 2px 8px rgba(0,0,0,0.8); background: rgba(0,0,0,0.4); padding: 4px 8px; border-radius: 4px; display: inline-block; }
+        .svc-icon-wrap { width: 64px; height: 64px; border-radius: 14px; background: rgba(0,0,0,0.5); border: 1px solid rgba(0,168,150,0.8); display: flex; align-items: center; justify-content: center; font-size: 24px; color: var(--mint); transition: all 0.4s; position: relative; z-index: 2; backdrop-filter: blur(4px); }
+        .svc-item:hover .svc-icon-wrap { background: var(--mint); color: var(--white); border-color: var(--mint); transform: scale(1.08); }
+        .svc-panel-title { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--white); font-weight: 600; line-height: 1.3; margin-top: 16px; position: relative; z-index: 2; text-shadow: 0 2px 10px rgba(0,0,0,0.9); }
+
+        .svc-body { padding: 40px 44px; display: flex; flex-direction: column; justify-content: center; border-left: 1px solid var(--border); }
+        .svc-tag-pill { display: inline-flex; align-items: center; gap: 6px; background: var(--mint-light); color: var(--mint); font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; padding: 5px 13px; border-radius: 30px; margin-bottom: 18px; width: fit-content; }
+        .svc-body p { color: var(--text-muted); font-size: 15.5px; line-height: 1.85; font-weight: 300; margin-bottom: 28px; }
+        .svc-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+        .chip { background: var(--off-white); color: var(--indigo); font-size: 12px; font-weight: 500; padding: 5px 13px; border-radius: 20px; border: 1px solid var(--border); }
+        .svc-link { display: inline-flex; align-items: center; gap: 8px; color: var(--mint); font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; transition: gap 0.3s, color 0.3s; width: fit-content; cursor: pointer; border: none; background: none; }
+        .svc-link:hover { gap: 14px; color: var(--indigo); }
+
+        @keyframes riseUp { to { opacity: 1; transform: translateY(0); } }
+        .svc-item:nth-child(1) { animation-delay: 0.05s; }
+        .svc-item:nth-child(2) { animation-delay: 0.15s; }
+        .svc-item:nth-child(3) { animation-delay: 0.25s; }
+        .svc-item:nth-child(4) { animation-delay: 0.35s; }
+        .svc-item:nth-child(5) { animation-delay: 0.45s; }
+        .svc-item:nth-child(6) { animation-delay: 0.55s; }
+
+        /* ---- PROCESS SECTION ---- */
+        .process-section { background: var(--off-white); padding: 100px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .process-header { text-align: center; margin-bottom: 70px; }
+        .process-header .sec-label { display: block; }
+        .process-header h2 { font-family: 'Playfair Display', serif; font-size: 40px; color: var(--indigo-mid); font-weight: 400; margin-top: 10px; }
+        .process-header h2 em { font-style: italic; color: var(--mint); }
+        .process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .p-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 40px 36px; position: relative; overflow: hidden; transition: border-color 0.3s, box-shadow 0.3s; }
+        .p-card:hover { border-color: var(--mint); box-shadow: 0 10px 30px rgba(0,168,150,0.08); }
+        .p-card::before { content: attr(data-num); position: absolute; top: -10px; right: 20px; font-family: 'Playfair Display', serif; font-size: 90px; font-weight: 600; color: var(--off-white); line-height: 1; pointer-events: none; transition: color 0.3s; }
+        .p-card:hover::before { color: rgba(0,168,150,0.06); }
+        .p-icon { width: 50px; height: 50px; border-radius: 10px; background: var(--mint-light); border: 1px solid rgba(0,168,150,0.2); display: flex; align-items: center; justify-content: center; color: var(--mint); font-size: 20px; margin-bottom: 24px; transition: all 0.3s; }
+        .p-card:hover .p-icon { background: var(--mint); color: var(--white); }
+        .p-card h4 { font-size: 20px; color: var(--indigo-mid); font-weight: 600; margin-bottom: 12px; }
+        .p-card p { color: var(--text-muted); font-size: 15px; font-weight: 300; line-height: 1.8; }
+
+        /* ---- WHY US SECTION ---- */
+        .why-section { padding: 100px 0; }
+        .why-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; padding: 0 5%; }
+        .why-left .sec-label { display: block; margin-bottom: 12px; }
+        .why-left h2 { font-family: 'Playfair Display', serif; font-size: 40px; color: var(--indigo-mid); font-weight: 400; line-height: 1.2; margin-bottom: 24px; }
+        .why-left h2 em { font-style: italic; color: var(--indigo); }
+        .why-left > p { color: var(--text-muted); font-size: 15.5px; font-weight: 300; line-height: 1.9; margin-bottom: 40px; }
+        .why-points { display: flex; flex-direction: column; gap: 22px; }
+        .w-point { display: flex; gap: 18px; align-items: flex-start; }
+        .w-icon { width: 42px; height: 42px; border-radius: 8px; background: var(--mint-light); border: 1px solid rgba(0,168,150,0.2); display: flex; align-items: center; justify-content: center; color: var(--mint); font-size: 16px; flex-shrink: 0; }
+        .w-point h5 { font-size: 16px; color: var(--indigo-mid); font-weight: 600; margin-bottom: 3px; }
+        .w-point p { color: var(--text-muted); font-size: 14px; font-weight: 300; margin: 0; }
+        
+        .why-right { position: relative; padding-bottom: 30px; }
+        
+        /* UPDATED: Why Us Big Card Image (Overlay removed) */
+        .why-big-card { 
+            background: url('clinic1.jpeg') center/cover no-repeat;
+            border-radius: 16px; 
+            height: 460px; 
+            position: relative; 
+            overflow: hidden; 
+            display: flex; 
+            align-items: flex-end; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .why-big-card::before { 
+            content: ''; position: absolute; inset: 0; 
+            background-image: repeating-linear-gradient(-45deg, rgba(0,168,150,0.15) 2px, transparent 2px, transparent 30px); 
+            background-size: 24px 24px; 
+            z-index: 1;
+        }
+        .why-big-card::after { content: ''; position: absolute; top: -60px; right: -60px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(0,168,150,0.2) 0%, transparent 70%); z-index: 1;}
+        .why-card-content { padding: 36px; position: relative; z-index: 2; width: 100%; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); }
+        .why-card-content h3 { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--white); font-weight: 600; margin-bottom: 8px; text-shadow: 0 2px 6px rgba(0,0,0,0.9); }
+        .why-card-content p { color: var(--white); font-size: 15px; text-shadow: 0 2px 4px rgba(0,0,0,0.9); }
+        
+        .why-float-badge { position: absolute; top: 30px; right: -15px; background: var(--mint); color: var(--white); padding: 14px 20px; border-radius: 8px; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 10px; box-shadow: 0 8px 24px rgba(0,0,0,0.3); z-index: 3; }
+        .why-num-badge { position: absolute; bottom: 10px; left: 30px; background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 16px 24px; box-shadow: 0 8px 24px rgba(28,37,65,0.12); z-index: 3; }
+        .why-num-badge .n-num { font-family: 'Playfair Display', serif; font-size: 34px; color: var(--indigo); font-weight: 600; line-height: 1; }
+        .why-num-badge .n-label { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+        /* ---- CTA STRIP (LIGHT THEME) ---- */
+        .cta-strip { background: var(--off-white); padding: 80px 5%; text-align: center; position: relative; overflow: hidden; border-top: 1px solid var(--border); }
+        .cta-strip::before { 
+            content: ''; position: absolute; inset: 0; 
+            background-image: repeating-linear-gradient(-45deg, rgba(0, 168, 150, 0.05), rgba(0, 168, 150, 0.05) 1px, transparent 1px, transparent 30px);
+        }
+        .cta-strip::after { content: ''; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 600px; height: 200px; background: radial-gradient(ellipse, rgba(0,168,150,0.08) 0%, transparent 70%); }
+        .cta-inner { position: relative; z-index: 2; }
+        .cta-strip h2 { font-family: 'Playfair Display', serif; font-size: 42px; color: var(--indigo-dark); font-weight: 400; margin-bottom: 14px; }
+        .cta-strip h2 em { font-style: italic; color: var(--mint); }
+        .cta-strip p { color: var(--text-muted); font-size: 16px; font-weight: 300; margin-bottom: 36px; }
+        .btn-mint { background: var(--mint); color: var(--white); text-decoration: none; padding: 15px 36px; border-radius: 6px; font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; transition: all 0.3s; display: inline-flex; align-items: center; gap: 10px; cursor: pointer; border: none; }
+        .btn-mint:hover { background: var(--indigo-dark); color: var(--white); }
+
+        /* ---- FOOTER ---- */
+        .footer { background: var(--indigo-dark); padding: 80px 50px 40px; border-top: 1px solid var(--indigo-dark); }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1.5fr 1fr 1.5fr; gap: 30px; max-width: 1300px; margin: 0 auto; }
+        .footer-col h4 { font-size: 13px; font-weight: 700; margin-bottom: 24px; color: var(--white); text-transform: uppercase; letter-spacing: 1.5px; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col ul li a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 15px; transition: 0.3s; }
+        .footer-col ul li a:hover { color: var(--mint); padding-left: 4px; }
+        .footer-logo h2 { font-size: 22px; font-weight: 700; color: var(--white); text-transform: uppercase; letter-spacing: 1px; }
+        .footer-logo span { font-size: 12px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 2px; display: block; margin-top: 2px; }
+        .social-icons { display: flex; gap: 12px; margin-top: 28px; }
+        .social-icons a { display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.7); text-decoration: none; transition: 0.3s; font-size: 14px; }
+        .social-icons a:hover { background: var(--mint); color: var(--white); border-color: var(--mint); }
+        .contact-info p { font-size: 15px; line-height: 1.7; margin-bottom: 16px; color: rgba(255,255,255,0.7); }
+        .contact-info a.view-dir { font-weight: 600; text-decoration: none; color: var(--mint); display: block; margin-bottom: 20px; font-size: 14px; }
+        .contact-info a.view-dir:hover { color: var(--white); }
+        .footer-bottom { margin-top: 60px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; text-align: center; font-size: 13px; color: rgba(255,255,255,0.5); }
+
+        /* ---- MODAL (BOOK APPOINTMENT) ---- */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(28, 37, 65, 0.85); 
+            backdrop-filter: blur(6px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+        .modal-container {
+            background: var(--indigo-dark);
+            border-radius: 16px;
+            padding: 50px;
+            max-width: 650px;
+            width: 90%;
+            position: relative;
+            transform: translateY(30px);
+            transition: transform 0.3s ease;
+            box-shadow: 0 24px 48px rgba(0,0,0,0.3);
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .modal-overlay.active .modal-container { transform: translateY(0); }
+        .modal-close { position: absolute; top: 20px; right: 25px; color: rgba(255,255,255,0.6); font-size: 24px; cursor: pointer; transition: color 0.3s; }
+        .modal-close:hover { color: var(--white); }
+        .modal-header { margin-bottom: 35px; }
+        .modal-header .logo-group { margin-bottom: 20px; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+        .modal-header .logo-group h2 { color: var(--white); font-size: 22px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; line-height: 1; }
+        .modal-header .logo-group span { font-size: 11px; font-weight: 400; color: rgba(255,255,255,0.6); letter-spacing: 2px; text-transform: uppercase; }
+        .modal-header h3 { font-family: 'Playfair Display', serif; font-size: 42px; color: var(--white); font-weight: 400; margin-bottom: 8px; line-height: 1.1; }
+        .modal-header p { color: rgba(255,255,255,0.7); font-size: 16px; font-weight: 300; }
+
+        .booking-form { display: grid; gap: 16px; grid-template-columns: 1fr 1fr 1fr; }
+        .form-group-full { grid-column: span 3; }
+        
+        .form-input, .form-select { background: transparent; border: 1px solid rgba(255,255,255,0.3); border-radius: 30px; color: var(--white); padding: 14px 24px; font-family: 'Jost', sans-serif; font-size: 15px; width: 100%; outline: none; transition: all 0.3s ease; appearance: none; }
+        .form-input::placeholder, .form-select:invalid { color: rgba(255,255,255,0.6); }
+        .form-input:focus, .form-select:focus { border-color: var(--mint); box-shadow: 0 0 0 4px rgba(0,168,150,0.1); }
+        
+        .select-wrapper { position: relative; width: 100%; }
+        .select-wrapper::after { content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,0.6); pointer-events: none; font-size: 12px; }
+        .form-select option { background: var(--indigo-dark); color: var(--white); }
+
+        .phone-wrapper { display: flex; align-items: center; background: transparent; border: 1px solid rgba(255,255,255,0.3); border-radius: 30px; padding: 0 24px; transition: border-color 0.3s; }
+        .phone-wrapper:focus-within { border-color: var(--mint); box-shadow: 0 0 0 4px rgba(0,168,150,0.1); }
+        .phone-prefix { display: flex; align-items: center; gap: 6px; color: var(--white); font-size: 15px; padding-right: 12px; border-right: 1px solid rgba(255,255,255,0.2); margin-right: 12px; }
+        .phone-wrapper input { background: transparent; border: none; color: var(--white); padding: 14px 0; font-family: 'Jost', sans-serif; font-size: 15px; width: 100%; outline: none; }
+        
+        input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); opacity: 0.6; cursor: pointer; }
+
+        .btn-submit { grid-column: span 3; background: var(--white); color: var(--indigo-dark); border: none; padding: 16px; border-radius: 30px; font-size: 14px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; margin-top: 10px; }
+        .btn-submit:hover { background: var(--mint); color: var(--white); }
+
+        /* RESPONSIVE */
+        @media (min-width: 600px) {
+            .booking-form { grid-template-columns: 1fr 1fr 1fr; }
+            .row-2 { grid-column: span 3; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        }
+
+        @media (max-width: 960px) {
+            .hero-inner, .why-inner, .footer-grid { grid-template-columns: 1fr !important; }
+            .svc-item, .svc-item.flip { grid-template-columns: 1fr !important; }
+            .svc-item.flip .svc-panel { order: unset; }
+            .svc-item.flip .svc-body { order: unset; border-left: 1px solid var(--border); border-right: none; }
+            .nav-links, .btn-nav { display: none; }
+            .hero h1 { font-size: 36px; }
+            .process-grid { grid-template-columns: 1fr; }
+            .why-float-badge { display: none; }
+            .sec-header { flex-direction: column; align-items: flex-start; }
+            .footer { padding: 60px 24px 30px; }
+            .row-2 { grid-template-columns: 1fr; }
+            .modal-container { padding: 30px 20px; }
+            .modal-header h3 { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html">
+                <h1>GOVINDAM</h1>
+                <span>Physiotherapy</span>
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html" class="active">Services</a></li>
+            <li><a href="treatments.html">Treatments</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+        <button class="btn-nav modal-trigger">Book Appointment &rarr;</button>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-inner">
+            <div>
+                <div class="hero-eyebrow">What We Offer</div>
+                <h1>Healing that moves<br>with <em>you.</em></h1>
+                <p class="hero-sub">At Govindam, every service is designed around the person sitting in front of us — not just the condition on paper. Science-backed. Deeply personal.</p>
+                <div class="hero-cta">
+                    <button class="primary modal-trigger">Book a Session</button>
+                    <a href="#services" class="ghost">Explore services <i class="fas fa-arrow-down"></i></a>
+                </div>
+            </div>
+            <div class="hero-stats-panel">
+                <div class="hero-stat">
+                    <div class="hs-num">6+</div>
+                    <div class="hs-label">Specialties</div>
+                    <div class="hs-bar"><div class="hs-bar-fill" style="width:80%"></div></div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hs-num">1000+</div>
+                    <div class="hs-label">Patients Treated</div>
+                    <div class="hs-bar"><div class="hs-bar-fill" style="width:65%"></div></div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hs-num">2+</div>
+                    <div class="hs-label">Years Experience</div>
+                    <div class="hs-bar"><div class="hs-bar-fill" style="width:90%"></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="tagline-bar">
+        <div class="tl-dot"></div>
+        <p>Evidence-based care &nbsp;·&nbsp; Personalised treatment &nbsp;·&nbsp; Real, lasting results</p>
+        <div class="tl-dot"></div>
+    </div>
+
+    <section class="services-section" id="services">
+        <div class="sec-inner">
+            <div class="sec-header">
+                <div>
+                    <span class="sec-label">Our Services</span>
+                    <h2 class="sec-title">Six ways we help you<br><em>feel like yourself</em> again.</h2>
+                </div>
+                <div class="sec-count">06</div>
+            </div>
+
+            <div class="svc-list">
+                <div class="svc-item">
+                    <div class="svc-panel sp-1">
+                        <div class="svc-panel-inner">
+                            <div class="svc-num-tag">01 / 06</div>
+                        </div>
+                        <div class="svc-panel-inner">
+                            <div class="svc-icon-wrap"><i class="fas fa-person-walking"></i></div>
+                            <div class="svc-panel-title">Physiotherapy</div>
+                        </div>
+                    </div>
+                    <div class="svc-body">
+                        <div class="svc-tag-pill"><i class="fas fa-circle" style="font-size:6px"></i> Core Service</div>
+                        <p>Pain is often your body's way of asking for attention — and physiotherapy is the answer. We combine hands-on manual therapy with targeted exercise programs to restore the movement you've been missing. Whether you're recovering from surgery, dealing with chronic pain, or bouncing back from a sports injury, our sessions are built around your body and your pace.</p>
+                        <div class="svc-chips">
+                            <span class="chip">Post-surgery rehab</span>
+                            <span class="chip">Chronic pain</span>
+                            <span class="chip">Sports injuries</span>
+                            <span class="chip">Manual therapy</span>
+                        </div>
+                        <button class="svc-link modal-trigger">Book a session <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="svc-item flip">
+                    <div class="svc-panel sp-2">
+                        <div class="svc-panel-inner">
+                            <div class="svc-num-tag">02 / 06</div>
+                        </div>
+                        <div class="svc-panel-inner">
+                            <div class="svc-icon-wrap"><i class="fas fa-bone"></i></div>
+                            <div class="svc-panel-title">Chiropractic Treatment</div>
+                        </div>
+                    </div>
+                    <div class="svc-body">
+                        <div class="svc-tag-pill"><i class="fas fa-circle" style="font-size:6px"></i> Alignment & Spine</div>
+                        <p>When your spine is out of alignment, everything else tends to follow. Chiropractic care at Govindam focuses on precise, gentle adjustments that take pressure off the nervous system and let your body function the way it's meant to. Many patients walk out feeling lighter after their very first session.</p>
+                        <div class="svc-chips">
+                            <span class="chip">Spinal adjustment</span>
+                            <span class="chip">Neck & back pain</span>
+                            <span class="chip">Posture correction</span>
+                            <span class="chip">Nerve relief</span>
+                        </div>
+                        <button class="svc-link modal-trigger">Book a session <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="svc-item">
+                    <div class="svc-panel sp-3">
+                        <div class="svc-panel-inner">
+                            <div class="svc-num-tag">03 / 06</div>
+                        </div>
+                        <div class="svc-panel-inner">
+                            <div class="svc-icon-wrap"><i class="fas fa-wind"></i></div>
+                            <div class="svc-panel-title">Cupping Therapy</div>
+                        </div>
+                    </div>
+                    <div class="svc-body">
+                        <div class="svc-tag-pill"><i class="fas fa-circle" style="font-size:6px"></i> Recovery & Circulation</div>
+                        <p>An ancient technique, refined for modern recovery. Cupping creates gentle suction on the skin to lift fascia, increase blood flow to tight, stubborn areas, and help your body flush out what's been building up. It's especially effective for athletes and people who carry stress in their upper back.</p>
+                        <div class="svc-chips">
+                            <span class="chip">Muscle recovery</span>
+                            <span class="chip">Fascia release</span>
+                            <span class="chip">Improved circulation</span>
+                            <span class="chip">Inflammation</span>
+                        </div>
+                        <button class="svc-link modal-trigger">Book a session <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="svc-item flip">
+                    <div class="svc-panel sp-4">
+                        <div class="svc-panel-inner">
+                            <div class="svc-num-tag">04 / 06</div>
+                        </div>
+                        <div class="svc-panel-inner">
+                            <div class="svc-icon-wrap"><i class="fas fa-syringe"></i></div>
+                            <div class="svc-panel-title">Needling Therapy</div>
+                        </div>
+                    </div>
+                    <div class="svc-body">
+                        <div class="svc-tag-pill"><i class="fas fa-circle" style="font-size:6px"></i> Trigger Point Release</div>
+                        <p>Some muscle knots simply refuse to let go — no matter how much you stretch or massage. That's where dry needling comes in. A very fine needle is inserted directly into the trigger point, causing it to relax almost immediately. The results can be remarkably fast for stubborn pain.</p>
+                        <div class="svc-chips">
+                            <span class="chip">Deep muscle tension</span>
+                            <span class="chip">Trigger points</span>
+                            <span class="chip">Headache relief</span>
+                            <span class="chip">Myofascial pain</span>
+                        </div>
+                        <button class="svc-link modal-trigger">Book a session <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="svc-item">
+                    <div class="svc-panel sp-5">
+                        <div class="svc-panel-inner">
+                            <div class="svc-num-tag">05 / 06</div>
+                        </div>
+                        <div class="svc-panel-inner">
+                            <div class="svc-icon-wrap"><i class="fas fa-hand-holding-medical"></i></div>
+                            <div class="svc-panel-title">Taping</div>
+                        </div>
+                    </div>
+                    <div class="svc-body">
+                        <div class="svc-tag-pill"><i class="fas fa-circle" style="font-size:6px"></i> Support & Stabilisation</div>
+                        <p>Applied correctly, kinesiology taping supports muscles and joints without restricting movement, reduces swelling, and gives your body the proprioceptive feedback it needs to move better. We use taping both as a standalone treatment and as part of broader rehabilitation.</p>
+                        <div class="svc-chips">
+                            <span class="chip">Joint support</span>
+                            <span class="chip">Swelling reduction</span>
+                            <span class="chip">Injury prevention</span>
+                            <span class="chip">Kinesiology</span>
+                        </div>
+                        <button class="svc-link modal-trigger">Book a session <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="svc-item flip">
+                    <div class="svc-panel sp-6">
+                        <div class="svc-panel-inner">
+                            <div class="svc-num-tag">06 / 06</div>
+                        </div>
+                        <div class="svc-panel-inner">
+                            <div class="svc-icon-wrap"><i class="fas fa-laptop-medical"></i></div>
+                            <div class="svc-panel-title">Ergonomics</div>
+                        </div>
+                    </div>
+                    <div class="svc-body">
+                        <div class="svc-tag-pill"><i class="fas fa-circle" style="font-size:6px"></i> Prevention & Workplace Health</div>
+                        <p>A lot of the pain people bring to us started at a desk. We assess your workspace and habits, then give you practical, specific changes that reduce strain and stop the injury cycle before it begins. Prevention isn't glamorous, but it's highly effective.</p>
+                        <div class="svc-chips">
+                            <span class="chip">Workspace assessment</span>
+                            <span class="chip">Posture coaching</span>
+                            <span class="chip">Repetitive strain</span>
+                            <span class="chip">Injury prevention</span>
+                        </div>
+                        <button class="svc-link modal-trigger">Book a consultation <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="process-section">
+        <div class="sec-inner">
+            <div class="process-header">
+                <span class="sec-label">How It Works</span>
+                <h2>Your path to recovery, <em>step by step</em></h2>
+            </div>
+            <div class="process-grid">
+                <div class="p-card" data-num="01">
+                    <div class="p-icon"><i class="fas fa-stethoscope"></i></div>
+                    <h4>Assessment</h4>
+                    <p>We begin by listening. A thorough clinical evaluation — movement, history, pain patterns — helps us understand what's actually happening, not just what it looks like on the surface.</p>
+                </div>
+                <div class="p-card" data-num="02">
+                    <div class="p-icon"><i class="fas fa-map"></i></div>
+                    <h4>Planning</h4>
+                    <p>No two people are alike, so no two plans should be. We build a personalised treatment roadmap with clear milestones, realistic timelines, and regular check-ins.</p>
+                </div>
+                <div class="p-card" data-num="03">
+                    <div class="p-icon"><i class="fas fa-dumbbell"></i></div>
+                    <h4>Treatment</h4>
+                    <p>Hands-on therapy, guided exercises, advanced modalities — everything we have goes into your sessions. We adjust as you progress, because recovery rarely moves in a straight line.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-section">
+        <div class="why-inner">
+            <div class="why-left">
+                <span class="sec-label">Why Govindam</span>
+                <h2>A small clinic with a<br>big <em>commitment.</em></h2>
+                <p>We treat every patient as if they were the only one. That means unhurried appointments, honest conversations, and outcomes that last well beyond your last session.</p>
+                <div class="why-points">
+                    <div class="w-point">
+                        <div class="w-icon"><i class="fas fa-user-doctor"></i></div>
+                        <div>
+                            <h5>Experienced Therapists</h5>
+                            <p>Years of clinical experience across orthopaedic, neurological, and sports physiotherapy.</p>
+                        </div>
+                    </div>
+                    <div class="w-point">
+                        <div class="w-icon"><i class="fas fa-clipboard-check"></i></div>
+                        <div>
+                            <h5>Evidence-Based Practice</h5>
+                            <p>Every treatment we use is backed by current clinical research — not habit, not trend.</p>
+                        </div>
+                    </div>
+                    <div class="w-point">
+                        <div class="w-icon"><i class="fas fa-heart-pulse"></i></div>
+                        <div>
+                            <h5>Whole-Person Approach</h5>
+                            <p>We look beyond the diagnosis to understand your lifestyle, goals, and what recovery truly means for you.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="why-right">
+                <div class="why-big-card">
+                    <div class="why-card-content">
+                                            </div>
+                </div>
+                <div class="why-float-badge">
+                    <i class="fas fa-star"></i> 4.9 / 5 patient rating
+                </div>
+                <div class="why-num-badge">
+                    <div class="n-num">1000+</div>
+                    <div class="n-label">Lives improved</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-strip">
+        <div class="cta-inner">
+            <h2>Ready to start feeling <em>better?</em></h2>
+            <p>Book a session today — your first step towards a life with less pain starts here.</p>
+            <button class="btn-mint modal-trigger"><i class="fas fa-calendar-check"></i> Book an Appointment</button>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="footer-logo">
+                    <h2>Govindam</h2>
+                    <span>Physiotherapy</span>
+                </div>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Our Services</h4>
+                <ul>
+                    <li><a href="services.html">Physiotherapy</a></li>
+                    <li><a href="services.html">Chiropractic Treatment</a></li>
+                    <li><a href="services.html">Cupping Therapy</a></li>
+                    <li><a href="services.html">Needling Therapy</a></li>
+                    <li><a href="services.html">Taping</a></li>
+                    <li><a href="services.html">Ergonomics</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Treatments</h4>
+                <ul>
+                    <li><a href="treatments.html">Low Back Pain</a></li>
+                    <li><a href="treatments.html">Neck & Cervical Pain</a></li>
+                    <li><a href="treatments.html">Sciatica</a></li>
+                    <li><a href="treatments.html">Knee Pain</a></li>
+                    <li><a href="treatments.html">Ankle Pain</a></li>
+                    <li><a href="treatments.html">Paralysis</a></li>
+                    <li><a href="treatments.html">Post-Op Fracture</a></li>
+                </ul>
+            </div>
+            <div class="footer-col contact-info">
+<h4>Get In Touch</h4>
+
+                <p>P195, Bijainagar,<br>Ajmer, Rajasthan<br>305624</p>
+                <a href="contact.html#contact-info" class="view-dir">View Directions &rarr;</a>
+                <p>+91 7060318332</p>
+                <p>govindamphysiotherapyclinic@gmail.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Govindam Physiotherapy Clinic. All rights reserved.
+        </div>
+    </footer>
+
+    <div class="modal-overlay" id="appointmentModal">
+        <div class="modal-container">
+            <div class="modal-close" id="closeModal"><i class="fas fa-times"></i></div>
+            
+            <div class="modal-header">
+                <div class="logo-group">
+                    <h2>Govindam</h2>
+                    <span>Physiotherapy</span>
+                </div>
+                <h3 class="modal-title">Book an Appointment</h3>
+                <p class="modal-subtitle">Your life is waiting. Fast, long-lasting relief is nearby.</p>
+            </div>
+
+            <form class="booking-form" action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                <div class="form-group-full">
+                    <input type="text" name="Patient_Name" class="form-input" placeholder="Your Name" required>
+                </div>
+
+                <div class="row-2">
+                    <div class="phone-wrapper">
+                        <span class="phone-prefix">🇮🇳 +91 <i class="fas fa-caret-down" style="font-size: 10px; margin-left: 2px; color: rgba(255,255,255,0.5)"></i></span>
+                        <input type="tel" name="Phone_Number" placeholder="Phone Number" required>
+                    </div>
+                    <div>
+                        <input type="email" name="Email_Address" class="form-input" placeholder="Your Email" required>
+                    </div>
+                </div>
+
+                <div class="form-group-full select-wrapper">
+                    <select name="Requested_Service" class="form-select" required>
+                        <option value="" disabled selected hidden>Choose a Service</option>
+                        <option value="physiotherapy">Physiotherapy</option>
+                        <option value="chiropractic">Chiropractic Treatment</option>
+                        <option value="cupping">Cupping Therapy</option>
+                        <option value="needling">Needling Therapy</option>
+                        <option value="taping">Taping</option>
+                        <option value="ergonomics">Ergonomics Consultation</option>
+                    </select>
+                </div>
+
+                <div style="grid-column: span 1;">
+                    <input type="date" name="Appointment_Date" class="form-input" required>
+                </div>
+                <div class="select-wrapper" style="grid-column: span 1;">
+                    <select name="Appointment_Hour" class="form-select" required>
+                        <option value="" disabled selected hidden>Hour</option>
+                        <option value="09 AM">09 AM</option>
+                        <option value="10 AM">10 AM</option>
+                        <option value="11 AM">11 AM</option>
+                        <option value="12 PM">12 PM</option>
+                        <option value="01 PM">01 PM</option>
+                        <option value="02 PM">02 PM</option>
+                        <option value="03 PM">03 PM</option>
+                        <option value="04 PM">04 PM</option>
+                        <option value="05 PM">05 PM</option>
+                        <option value="06 PM">06 PM</option>
+                        <option value="07 PM">07 PM</option>
+                    </select>
+                </div>
+                <div class="select-wrapper" style="grid-column: span 1;">
+                    <select name="Appointment_Minute" class="form-select" required>
+                        <option value="" disabled selected hidden>Min</option>
+                        <option value="00">00</option>
+                        <option value="15">15</option>
+                        <option value="30">30</option>
+                        <option value="45">45</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-submit">Book Online</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('appointmentModal');
+        const triggers = document.querySelectorAll('.modal-trigger');
+        const closeBtn = document.getElementById('closeModal');
+
+        // Open Modal
+        triggers.forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
+                e.preventDefault(); 
+                modal.classList.add('active');
+            });
+        });
+
+        // Close Modal
+        closeBtn.addEventListener('click', () => {
+            modal.classList.remove('active');
+        });
+
+        // Close when clicking outside the container
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+    </script>
+
+</body>
+</html>

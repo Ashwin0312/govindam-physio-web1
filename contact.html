@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us | Govindam Physiotherapy</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --indigo:       #3D5A8A;
+            --indigo-dark:  #1C2541; /* Dark Navy */
+            --indigo-mid:   #2A3659;
+            --mint:         #00A896;
+            --mint-light:   #E6F7F5;
+            --white:        #FFFFFF;
+            --off-white:    #F4F7FB;
+            --border:       #DDE4EF;
+            --text-main:    #3A4A5C;
+            --text-muted:   #7A8FA6;
+            --text-light:   #A8BDD0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--white); color: var(--text-main); font-family: 'Jost', sans-serif; line-height: 1.6; overflow-x: hidden; }
+
+        /* ---- NAVBAR ---- */
+        .navbar { display: flex; align-items: center; justify-content: space-between; padding: 0 5%; height: 72px; background: var(--white); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; }
+        .logo a { text-decoration: none; display: flex; flex-direction: column; }
+        .logo h1 { color: var(--indigo-mid); font-size: 22px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; line-height: 1.1; }
+        .logo span { font-size: 12px; font-weight: 400; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; margin-top: 1px; }
+        .nav-links { display: flex; gap: 36px; list-style: none; align-items: center; margin: 0; }
+        .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 14px; font-weight: 500; letter-spacing: 0.5px; position: relative; padding-bottom: 4px; transition: color 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--indigo); }
+        .nav-links a.active::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: var(--mint); border-radius: 2px; }
+        .btn-nav { background: var(--mint); color: var(--white); text-decoration: none; padding: 11px 24px; border-radius: 6px; font-size: 13px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; transition: all 0.3s; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; border: none; }
+        .btn-nav:hover { background: var(--indigo); }
+
+        /* ---- HERO (IMAGE BACKGROUND ONLY - NO TINT OR PATTERN) ---- */
+        .hero { 
+            min-height: 520px; 
+            display: flex; 
+            align-items: center; 
+            position: relative; 
+            overflow: hidden; 
+            padding: 80px 5%; 
+            background: url('homepage1.jpeg') center/cover no-repeat; 
+        }
+        
+        .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; position: relative; z-index: 3; }
+        
+        /* Updated hero text elements to ensure readability against the raw image */
+        .hero-eyebrow { display: inline-flex; align-items: center; gap: 10px; background: var(--white); border: 1px solid var(--border); color: var(--indigo-dark); padding: 7px 16px; border-radius: 4px; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 28px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .hero-eyebrow::before { content: ''; width: 6px; height: 6px; background: var(--mint); border-radius: 50%; }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 54px; color: var(--indigo-dark); line-height: 1.15; font-weight: 600; margin-bottom: 22px; text-shadow: 0 2px 10px rgba(255,255,255,0.8); }
+        .hero h1 em { font-style: italic; color: var(--mint); }
+        .hero-sub { color: var(--indigo-dark); font-size: 18px; font-weight: 500; max-width: 420px; line-height: 1.8; margin-bottom: 36px; background: rgba(255,255,255,0.7); padding: 10px 15px; border-radius: 8px; backdrop-filter: blur(4px); }
+        
+        .hero-cta { display: flex; gap: 16px; align-items: center; }
+        .hero-cta button.primary { background: var(--mint); color: var(--white); text-decoration: none; padding: 14px 30px; border-radius: 6px; font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; transition: all 0.3s; border: none; cursor: pointer; box-shadow: 0 4px 15px rgba(0,168,150,0.3);}
+        .hero-cta button.primary:hover { background: var(--indigo-dark); color: var(--white); }
+
+        /* Hero Right Panel for Contact Info */
+        .hero-info-panel { 
+            background: rgba(255,255,255,0.9); 
+            border: 1px solid rgba(255,255,255,0.5); 
+            border-radius: 12px; 
+            padding: 40px; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 24px; 
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .hip-item { display: flex; align-items: flex-start; gap: 16px; }
+        .hip-item + .hip-item { border-top: 1px solid var(--border); padding-top: 24px; }
+        .hip-icon { width: 44px; height: 44px; border-radius: 10px; background: var(--mint-light); border: 1px solid rgba(0,168,150,0.2); display: flex; align-items: center; justify-content: center; color: var(--mint); font-size: 18px; flex-shrink: 0; }
+        .hip-title { font-size: 15px; font-weight: 600; color: var(--indigo-dark); margin-bottom: 3px; }
+        .hip-desc { font-size: 14px; color: var(--text-main); font-weight: 400; }
+
+        /* ---- TAGLINE BAR ---- */
+        .tagline-bar { background: var(--mint); padding: 18px 5%; text-align: center; display: flex; align-items: center; justify-content: center; gap: 20px; }
+        .tagline-bar p { color: var(--white); font-size: 14px; font-weight: 500; letter-spacing: 1px; }
+        .tl-dot { width: 5px; height: 5px; background: rgba(255,255,255,0.5); border-radius: 50%; }
+
+        /* ---- SHARED SECTION HELPERS ---- */
+        .sec-inner { max-width: 1240px; margin: 0 auto; padding: 0 5%; }
+        .sec-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 2.5px; color: var(--mint); display: block; margin-bottom: 12px; }
+        .sec-title { font-family: 'Playfair Display', serif; font-size: 42px; color: var(--indigo-dark); font-weight: 400; line-height: 1.2; margin-bottom: 50px; }
+        .sec-title em { font-style: italic; color: var(--mint); }
+
+        /* --- CONTACT INFORMATION SECTION --- */
+        .contact-section { padding: 100px 0; }
+        .contact-grid { display: flex; gap: 60px; align-items: flex-start; }
+        .contact-text-container { flex: 1; max-width: 450px; }
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .info-block { display: flex; flex-direction: column; gap: 12px; }
+        .info-heading { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--indigo-mid); }
+        .info-text { font-size: 16px; color: var(--text-muted); line-height: 1.8; font-weight: 300; }
+        .info-text p { margin-bottom: 5px; }
+        .map-container { flex: 1.5; height: 450px; background-color: var(--border); position: relative; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(28,37,65,0.05); border: 1px solid var(--border); }
+        .map-container iframe { width: 100%; height: 100%; border: 0; filter: grayscale(20%) contrast(90%); }
+
+        /* --- ASK A QUESTION SECTION --- */
+        .ask-question-section { padding: 100px 0; background-color: var(--off-white); border-top: 1px solid var(--border); }
+        .ask-inner { display: flex; gap: 60px; align-items: stretch; max-width: 1240px; margin: 0 auto; padding: 0 5%; }
+        .ask-image-container { flex: 1; border-radius: 12px; overflow: hidden; display: flex; justify-content: center; align-items: center; box-shadow: 0 10px 30px rgba(28,37,65,0.08); border: 1px solid var(--border); background: var(--white); }
+        .ask-image-container img { width: 100%; height: 100%; object-fit: cover; min-height: 550px; }
+        .ask-form-container { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+        .ask-subtitle { color: var(--text-muted); font-size: 16px; line-height: 1.6; margin-bottom: 40px; font-weight: 300; }
+
+        .ask-form { display: flex; flex-direction: column; gap: 24px; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group label { font-size: 13px; color: var(--indigo-dark); margin-bottom: 8px; font-weight: 600; letter-spacing: 0.5px; }
+        
+        .contact-input { width: 100%; padding: 15px 24px; border: 1px solid var(--border); border-radius: 30px; font-size: 15px; font-family: 'Jost', sans-serif; color: var(--indigo-dark); transition: all 0.3s; background: var(--white); outline: none; }
+        .contact-input:focus { border-color: var(--mint); box-shadow: 0 0 0 4px rgba(0,168,150,0.1); }
+        textarea.contact-input { border-radius: 20px; resize: vertical; min-height: 150px; }
+
+        .phone-input-wrapper { display: flex; align-items: center; border: 1px solid var(--border); border-radius: 30px; padding: 0 24px; transition: all 0.3s; background: var(--white); }
+        .phone-input-wrapper:focus-within { border-color: var(--mint); box-shadow: 0 0 0 4px rgba(0,168,150,0.1); }
+        .country-prefix { display: flex; align-items: center; gap: 8px; font-size: 15px; color: var(--indigo-dark); padding-right: 14px; border-right: 1px solid var(--border); margin-right: 14px; font-weight: 500;}
+        .country-prefix span { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+        .phone-input-wrapper input { flex: 1; border: none; padding: 15px 0; font-size: 15px; background: transparent; font-family: inherit; color: var(--indigo-dark); outline: none; }
+
+        .btn-submit-ask { background: var(--mint); color: var(--white); padding: 16px 40px; border-radius: 30px; font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; border: none; cursor: pointer; transition: 0.3s; width: max-content; margin-top: 10px; }
+        .btn-submit-ask:hover { background: var(--indigo-dark); color: var(--white); }
+
+        /* ---- CTA STRIP (LIGHT THEME WITH DIAGONAL STRIPES) ---- */
+        .cta-strip { background: var(--off-white); padding: 80px 5%; text-align: center; position: relative; overflow: hidden; border-top: 1px solid var(--border); }
+        .cta-strip::before { 
+            content: ''; position: absolute; inset: 0; 
+            background-image: repeating-linear-gradient(-45deg, rgba(0, 168, 150, 0.05), rgba(0, 168, 150, 0.05) 1px, transparent 1px, transparent 30px);
+        }
+        .cta-strip::after { content: ''; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 600px; height: 200px; background: radial-gradient(ellipse, rgba(0,168,150,0.08) 0%, transparent 70%); }
+        .cta-inner { position: relative; z-index: 2; }
+        .cta-strip h2 { font-family: 'Playfair Display', serif; font-size: 42px; color: var(--indigo-dark); font-weight: 400; margin-bottom: 14px; }
+        .cta-strip h2 em { font-style: italic; color: var(--mint); }
+        .cta-strip p { color: var(--text-muted); font-size: 16px; font-weight: 300; margin-bottom: 36px; }
+        .btn-mint { background: var(--mint); color: var(--white); text-decoration: none; padding: 15px 36px; border-radius: 6px; font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; transition: all 0.3s; display: inline-flex; align-items: center; gap: 10px; cursor: pointer; border: none; }
+        .btn-mint:hover { background: var(--indigo-dark); color: var(--white); }
+
+        /* ---- FOOTER (SOLID DARK NAVY) ---- */
+        .footer { background: var(--indigo-dark); padding: 80px 50px 40px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1.5fr 1fr 1.5fr; gap: 30px; max-width: 1300px; margin: 0 auto; }
+        .footer-col h4 { font-size: 13px; font-weight: 700; margin-bottom: 24px; color: var(--white); text-transform: uppercase; letter-spacing: 1.5px; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col ul li a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 15px; transition: 0.3s; }
+        .footer-col ul li a:hover { color: var(--mint); padding-left: 4px; }
+        .footer-logo h2 { font-size: 22px; font-weight: 700; color: var(--white); text-transform: uppercase; letter-spacing: 1px; }
+        .footer-logo span { font-size: 12px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 2px; display: block; margin-top: 2px; }
+        .social-icons { display: flex; gap: 12px; margin-top: 28px; }
+        .social-icons a { display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.7); text-decoration: none; transition: 0.3s; font-size: 14px; }
+        .social-icons a:hover { background: var(--mint); color: var(--white); border-color: var(--mint); }
+        .contact-info p { font-size: 15px; line-height: 1.7; margin-bottom: 16px; color: rgba(255,255,255,0.7); }
+        .contact-info a.view-dir { font-weight: 600; text-decoration: none; color: var(--mint); display: block; margin-bottom: 20px; font-size: 14px; }
+        .contact-info a.view-dir:hover { color: var(--white); }
+        .footer-bottom { margin-top: 60px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; text-align: center; font-size: 13px; color: rgba(255,255,255,0.5); }
+
+        /* ---- MODAL (BOOK APPOINTMENT) ---- */
+        .modal-overlay {
+            position: fixed; inset: 0; background: rgba(28, 37, 65, 0.85); backdrop-filter: blur(6px); z-index: 2000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+        }
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+        .modal-container {
+            background: var(--indigo-dark); border-radius: 16px; padding: 50px; max-width: 650px; width: 90%; position: relative; transform: translateY(30px); transition: transform 0.3s ease; box-shadow: 0 24px 48px rgba(0,0,0,0.3); text-align: center; border: 1px solid rgba(255,255,255,0.1);
+        }
+        .modal-overlay.active .modal-container { transform: translateY(0); }
+        .modal-close { position: absolute; top: 20px; right: 25px; color: rgba(255,255,255,0.6); font-size: 24px; cursor: pointer; transition: color 0.3s; }
+        .modal-close:hover { color: var(--white); }
+        .modal-header { margin-bottom: 35px; }
+        .modal-header .logo-group { margin-bottom: 20px; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+        .modal-header .logo-group h2 { color: var(--white); font-size: 22px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; line-height: 1; }
+        .modal-header .logo-group span { font-size: 11px; font-weight: 400; color: rgba(255,255,255,0.6); letter-spacing: 2px; text-transform: uppercase; }
+        .modal-header h3 { font-family: 'Playfair Display', serif; font-size: 42px; color: var(--white); font-weight: 400; margin-bottom: 8px; line-height: 1.1; }
+        .modal-header p { color: rgba(255,255,255,0.7); font-size: 16px; font-weight: 300; }
+
+        .booking-form { display: grid; gap: 16px; grid-template-columns: 1fr 1fr 1fr; }
+        .form-group-full { grid-column: span 3; }
+        
+        .form-input, .form-select { background: transparent; border: 1px solid rgba(255,255,255,0.3); border-radius: 30px; color: var(--white); padding: 14px 24px; font-family: 'Jost', sans-serif; font-size: 15px; width: 100%; outline: none; transition: all 0.3s ease; appearance: none; }
+        .form-input::placeholder, .form-select:invalid { color: rgba(255,255,255,0.6); }
+        .form-input:focus, .form-select:focus { border-color: var(--mint); box-shadow: 0 0 0 4px rgba(0,168,150,0.1); }
+        
+        .select-wrapper { position: relative; width: 100%; }
+        .select-wrapper::after { content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,0.6); pointer-events: none; font-size: 12px; }
+        .form-select option { background: var(--indigo-dark); color: var(--white); }
+
+        .phone-wrapper-modal { display: flex; align-items: center; background: transparent; border: 1px solid rgba(255,255,255,0.3); border-radius: 30px; padding: 0 24px; transition: border-color 0.3s; }
+        .phone-wrapper-modal:focus-within { border-color: var(--mint); box-shadow: 0 0 0 4px rgba(0,168,150,0.1); }
+        .phone-prefix-modal { display: flex; align-items: center; gap: 6px; color: var(--white); font-size: 15px; padding-right: 12px; border-right: 1px solid rgba(255,255,255,0.2); margin-right: 12px; font-weight: 500;}
+        .phone-wrapper-modal input { background: transparent; border: none; color: var(--white); padding: 14px 0; font-family: inherit; font-size: 15px; width: 100%; outline: none; }
+        
+        input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); opacity: 0.6; cursor: pointer; }
+
+        .btn-submit-modal { grid-column: span 3; background: var(--white); color: var(--indigo-dark); border: none; padding: 16px; border-radius: 30px; font-size: 14px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; margin-top: 10px; }
+        .btn-submit-modal:hover { background: var(--mint); color: var(--white); }
+
+        /* RESPONSIVE */
+        @media (min-width: 600px) {
+            .row-2 { grid-column: span 3; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        }
+
+        @media (max-width: 960px) {
+            .hero-inner, .contact-grid, .ask-inner, .footer-grid { grid-template-columns: 1fr !important; flex-direction: column;}
+            .contact-text-container, .map-container, .ask-image-container, .ask-form-container { width: 100%; max-width: 100%; }
+            .map-container { height: 400px; }
+            .form-row { grid-template-columns: 1fr; }
+            .nav-links, .btn-nav { display: none; }
+            .hero h1 { font-size: 36px; }
+            .sec-header { flex-direction: column; align-items: flex-start; }
+            .footer { padding: 60px 24px 30px; }
+            .row-2 { grid-template-columns: 1fr; }
+            .modal-container { padding: 30px 20px; }
+            .modal-header h3 { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html">
+                <h1>GOVINDAM</h1>
+                <span>Physiotherapy</span>
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="treatments.html">Treatments</a></li>
+            <li><a href="contact.html" class="active">Contact Us</a></li>
+        </ul>
+        <button class="btn-nav modal-trigger">Book Appointment →</button>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-inner">
+            <div>
+                <div class="hero-eyebrow">Get in Touch</div>
+                <h1>Feel Better, Live Better<br>— Contact Us <em>Anytime!</em></h1>
+                <p class="hero-sub">We are here to answer your questions, discuss your treatment options, and help you schedule your next visit.</p>
+                <div class="hero-cta">
+                    <button class="primary modal-trigger">Book a Session</button>
+                </div>
+            </div>
+            
+            <div class="hero-info-panel">
+                <div class="hip-item">
+                    <div class="hip-icon"><i class="fas fa-phone"></i></div>
+                    <div>
+                        <div class="hip-title">Give Us a Call</div>
+                        <div class="hip-desc">+91 70603 18332</div>
+                    </div>
+                </div>
+                <div class="hip-item">
+                    <div class="hip-icon"><i class="fas fa-envelope"></i></div>
+                    <div>
+                        <div class="hip-title">Send an Email</div>
+                        <div class="hip-desc">govindamphysio@gmail.com</div>
+                    </div>
+                </div>
+                <div class="hip-item">
+                    <div class="hip-icon"><i class="fas fa-location-dot"></i></div>
+                    <div>
+                        <div class="hip-title">Visit the Clinic</div>
+                        <div class="hip-desc">P195, Bijainagar, Rajasthan 305624</div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <div class="tagline-bar">
+        <div class="tl-dot"></div>
+        <p>Evidence-based care  ·  Personalised treatment  ·  Real, lasting results</p>
+        <div class="tl-dot"></div>
+    </div>
+
+    <section class="contact-section" id="contact-info">
+        <div class="sec-inner contact-grid">
+            <div class="contact-text-container">
+                <span class="sec-label">Where to find us</span>
+                <h2 class="sec-title">Contact<br><em>Information</em></h2>
+                
+                <div class="info-grid">
+                    <div class="info-block">
+                        <div class="info-heading">ADDRESS:</div>
+                        <div class="info-text">
+                            <p>WJHP+29W,<br>
+                            Bijainagar,<br>
+                            Rajasthan 305624</p>
+                        </div>
+                    </div>
+                    <div class="info-block">
+                        <div class="info-heading">OPENING HOURS:</div>
+                        <div class="info-text">
+                            <p>Mon – Sat: 9:00am –<br>
+                            8:00pm</p>
+                            <p>Sun: 12:00pm – 6:00pm</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="map-container">
+            <iframe 
+                src="https://maps.google.com/maps?q=Govindam%20Physiotherapy,%20Bijainagar,%20Rajasthan&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+        </div>
+    </section>
+
+    <section class="ask-question-section">
+        <div class="ask-inner">
+            <div class="ask-image-container">
+                <img src="service1.jpeg" alt="Govindam Physiotherapy Staff">
+            </div>
+            
+            <div class="ask-form-container">
+                <span class="sec-label">Get Answers</span>
+                <h2 class="sec-title">Ask a <em>Question</em></h2>
+                <p class="ask-subtitle">If you have any questions, you can contact us. Please, fill out the form below and we will get back to you shortly.</p>
+                
+                <form class="ask-form" action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="Name" class="contact-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-Mail</label>
+                            <input type="email" id="email" name="Email" class="contact-input" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <div class="phone-input-wrapper">
+                            <div class="country-prefix">
+                                🇮🇳 <span>▼</span> +91
+                            </div>
+                            <input type="tel" id="phone" name="Phone" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="Message" class="contact-input" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit-ask">SEND MESSAGE</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-strip">
+        <div class="cta-inner">
+            <h2>Ready to start feeling <em>better?</em></h2>
+            <p>Book a session today — your first step towards a life with less pain starts here.</p>
+            <button class="btn-mint modal-trigger"><i class="fas fa-calendar-check"></i> Book an Appointment</button>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="footer-logo">
+                    <h2>Govindam</h2>
+                    <span>Physiotherapy</span>
+                </div>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>QUICK LINKS</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>OUR SERVICES</h4>
+                <ul>
+                    <li><a href="services.html">Physiotherapy</a></li>
+                    <li><a href="services.html">Chiropractic Treatment</a></li>
+                    <li><a href="services.html">Cupping Therapy</a></li>
+                    <li><a href="services.html">Needling Therapy</a></li>
+                    <li><a href="services.html">Taping</a></li>
+                    <li><a href="services.html">Ergonomics</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>TREATMENTS</h4>
+                <ul>
+                    <li><a href="treatments.html">Low Back Pain</a></li>
+                    <li><a href="treatments.html">Neck & Cervical Pain</a></li>
+                    <li><a href="treatments.html">Sciatica</a></li>
+                    <li><a href="treatments.html">Knee Pain</a></li>
+                    <li><a href="treatments.html">Ankle Pain</a></li>
+                    <li><a href="treatments.html">Paralysis</a></li>
+                    <li><a href="treatments.html">Post-Op Fracture Rehab</a></li>
+                </ul>
+            </div>
+            <div class="footer-col contact-info">
+                <h4>GET IN TOUCH</h4>
+                <p>P195, Bijainagar,<br>Ajmer, Rajasthan<br>305624</p>
+                <a href="#" class="view-dir">View Directions →</a>
+                <p>+91 7060318332</p>
+                <p>govindamphysiotherapyclinic@gmail.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2026 Govindam Physiotherapy Clinic. All rights reserved.
+        </div>
+    </footer>
+
+    <div class="modal-overlay" id="appointmentModal">
+        <div class="modal-container">
+            <div class="modal-close" id="closeModal"><i class="fas fa-times"></i></div>
+            
+            <div class="modal-header">
+                <div class="logo-group">
+                    <h2>Govindam</h2>
+                    <span>Physiotherapy</span>
+                </div>
+                <h3 class="modal-title">Book an Appointment</h3>
+                <p class="modal-subtitle">Your life is waiting. Fast, long-lasting relief is nearby.</p>
+            </div>
+
+            <form class="booking-form" action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                <div class="form-group-full">
+                    <input type="text" name="Patient_Name" class="form-input" placeholder="Your Name" required>
+                </div>
+
+                <div class="row-2">
+                    <div class="phone-wrapper-modal">
+                        <span class="phone-prefix-modal">🇮🇳 <i class="fas fa-caret-down" style="font-size: 10px; margin-left: 2px; color: rgba(255,255,255,0.5)"></i> +91 </span>
+                        <input type="tel" name="Phone_Number" placeholder="Phone Number" required>
+                    </div>
+                    <div>
+                        <input type="email" name="Email_Address" class="form-input" placeholder="Your Email" required>
+                    </div>
+                </div>
+
+                <div class="form-group-full select-wrapper">
+                    <select name="Requested_Service" class="form-select" required>
+                        <option value="" disabled selected hidden>Choose a Service</option>
+                        <option value="Physiotherapy">Physiotherapy</option>
+                        <option value="Chiropractic">Chiropractic Treatment</option>
+                        <option value="Cupping">Cupping Therapy</option>
+                        <option value="Needling">Needling Therapy</option>
+                        <option value="Taping">Taping</option>
+                        <option value="Ergonomics">Ergonomics Consultation</option>
+                    </select>
+                </div>
+
+                <div style="grid-column: span 1;">
+                    <input type="date" name="Appointment_Date" class="form-input" required>
+                </div>
+                <div class="select-wrapper" style="grid-column: span 1;">
+                    <select name="Appointment_Hour" class="form-select" required>
+                        <option value="" disabled selected hidden>Hour</option>
+                        <option value="09 AM">09 AM</option>
+                        <option value="10 AM">10 AM</option>
+                        <option value="11 AM">11 AM</option>
+                        <option value="12 PM">12 PM</option>
+                        <option value="01 PM">01 PM</option>
+                        <option value="02 PM">02 PM</option>
+                        <option value="03 PM">03 PM</option>
+                        <option value="04 PM">04 PM</option>
+                        <option value="05 PM">05 PM</option>
+                        <option value="06 PM">06 PM</option>
+                        <option value="07 PM">07 PM</option>
+                    </select>
+                </div>
+                <div class="select-wrapper" style="grid-column: span 1;">
+                    <select name="Appointment_Minute" class="form-select" required>
+                        <option value="" disabled selected hidden>Min</option>
+                        <option value="00">00</option>
+                        <option value="15">15</option>
+                        <option value="30">30</option>
+                        <option value="45">45</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-submit-modal">Book Online</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('appointmentModal');
+        const triggers = document.querySelectorAll('.modal-trigger');
+        const closeBtn = document.getElementById('closeModal');
+
+        triggers.forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
+                e.preventDefault(); 
+                modal.classList.add('active');
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.classList.remove('active');
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+    </script>
+
+</body>
+</html>
